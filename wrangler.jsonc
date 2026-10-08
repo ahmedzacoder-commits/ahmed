@@ -1,0 +1,10 @@
+{
+  // إعدادات Cloudflare Worker — لازم الملف ده يكون في أول الريبو جنب worker.js
+  "name": "friendsquiz",
+  "main": "worker.js",
+  "compatibility_date": "2025-01-01",
+  // الموقع نفسه: حط friends.html باسم index.html جوه فولدر public
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  // قاعدة البيانات: اعمل KV namespace من الداشبورد وحط الـ ID بتاعه هنا
+  "kv_namespaces": [{ "binding": "DB", "id": "PUT_YOUR_KV_NAMESPACE_ID_HERE" }]
+}
