@@ -6,5 +6,5 @@
   // الموقع نفسه: حط friends.html باسم index.html جوه فولدر public
   "assets": { "directory": "./public", "binding": "ASSETS" },
   // قاعدة البيانات: اعمل KV namespace من الداشبورد وحط الـ ID بتاعه هنا
-  "kv_namespaces": [{ "binding": "DB", "id": "PUT_YOUR_KV_NAMESPACE_ID_HERE" }]
+  "kv_namespaces": [{ "binding": "DB", "id": "a5dc7e878f904fad866b5491be246167" }]
 }
