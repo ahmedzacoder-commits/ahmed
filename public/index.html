@@ -1,0 +1,1579 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<!-- ============================================================
+     الإعدادات (اختياري)
+     ------------------------------------------------------------
+     • للتجربة على اللابتوب والموبايل (نفس الواي فاي): شغّل  node server.js
+       وافتح العنوان اللي هيطبعه. مفيش حاجة تتكتب هنا.
+     • للنشر على الإنترنت مع لوحة درجات: اعمل مشروع مجاني على supabase.com،
+       شغّل كود الـ SQL اللي في صفحة #/setup، وحط هنا اللينك والمفتاح.
+     ============================================================ -->
+<script>
+window.FRIENDS_CONFIG = {
+  SUPABASE_URL: "",       // مثال: https://abcdxyz.supabase.co
+  SUPABASE_ANON_KEY: "",  // الـ anon public key (مش الـ service_role)
+  ADSENSE_CLIENT: "",     // مثال: ca-pub-1234567890123456 (بعد موافقة AdSense)
+  AD_SLOT: "",            // رقم وحدة الإعلان
+};
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6e9">
+<title>صاحبي بجد؟ | اكشف صحابك الفيك</title>
+<meta name="description" content="اعمل اختبار عن نفسك في دقيقة، ابعته لصحابك، وشوف مين يعرفك بجد ومين يستاهل البلوك.">
+<meta property="og:title" content="صاحبي بجد؟ 🔥 اكشف صحابك الفيك">
+<meta property="og:description" content="جاوب على الأسئلة وشوف إنت صاحب بجد ولا فيك يستاهل البلوك 🚫">
+<meta property="og:locale" content="ar_EG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Loaded without blocking first paint: on Wi-Fi with no internet the page must still appear instantly. -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  /* Sticker look: cream dotted paper, white cards with a thick dark outline and a hard offset shadow. */
+  :root {
+    --cream: #fff6e9; --paper: #ffffff; --ink: #1e1b18; --muted: #6b635b;
+    --tomato: #ff5b3a; --tomato-soft: #ffe1da; --sun: #ffc83d; --sun-soft: #fff1c7;
+    --mint: #1f8f5f; --mint-soft: #dbf4e7; --sky: #bfe3ff; --sky-soft: #e8f4ff;
+    --wa: #25d366; --tg: #9fd8ff; --fb: #cfe0ff;
+    --font-display: "Baloo Bhaijaan 2", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans Arabic", "Baloo Bhaijaan 2", system-ui, sans-serif;
+    --shadow: 3px 3px 0 0 var(--ink); --shadow-lg: 5px 5px 0 0 var(--ink);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background-color: var(--cream);
+    background-image: radial-gradient(rgba(30, 27, 24, .09) 1px, transparent 1px);
+    background-size: 18px 18px;
+    color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { margin: 0; line-height: 1.3; font-family: var(--font-display); font-weight: 800; }
+  p { margin: 0; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+
+  .phone { width: 100%; max-width: 440px; min-height: 100vh; margin: 0 auto; display: flex; flex-direction: column; }
+  main { flex: 1; padding: 16px 16px 28px; display: flex; flex-direction: column; gap: 18px; }
+  .site-footer { padding: 0 16px 22px; text-align: center; font-size: .85rem; color: var(--muted); display: flex; gap: 12px; justify-content: center; }
+  .site-footer a { text-underline-offset: 4px; }
+
+  /* Headers: flat paper, no sky or clouds */
+  .sky { position: relative; background: none; color: var(--ink); padding: 14px 0 4px !important; text-align: center; margin: 0 !important; }
+  .deco, .cloud-edge { display: none; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+  .round-btn { width: 44px; height: 44px; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); color: var(--ink); box-shadow: var(--shadow); display: grid; place-items: center; cursor: pointer; font-size: 20px; font-weight: 800; text-decoration: none; transition: transform .1s, box-shadow .1s; }
+  .round-btn:active { transform: translate(3px, 3px); box-shadow: none; }
+  .logo { display: inline-flex; align-items: baseline; gap: 6px; text-decoration: none; font-family: var(--font-display); font-weight: 800; line-height: 1.1; }
+  .logo b { font-size: 2.3rem; font-weight: 800; color: var(--ink); }
+  .logo i { font-style: normal; display: inline-block; font-size: 2rem; font-weight: 800; color: var(--ink); background: var(--sun); border: 2px solid var(--ink); border-radius: 10px; padding: 0 8px; transform: rotate(-3deg); box-shadow: var(--shadow); }
+  .logo.small b { font-size: 1.4rem; } .logo.small i { font-size: 1.2rem; padding: 0 6px; box-shadow: 2px 2px 0 0 var(--ink); }
+  .logo-wrap { position: relative; display: inline-block; margin: 8px 0 6px; }
+  .logo-wrap .peek { position: absolute; bottom: -4px; width: 54px; height: 54px; }
+  .logo-wrap .peek.l { left: -62px; } .logo-wrap .peek.r { right: -62px; transform: scaleX(-1); }
+  .tagline { display: inline-block; margin-top: 10px; background: var(--sky); border: 2px solid var(--ink); border-radius: 999px; padding: 2px 14px; font-weight: 700; font-size: .95rem; transform: rotate(-2deg); }
+  .lang { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 14px auto 0; max-width: 300px; background: var(--paper); border: 2px solid var(--ink); border-radius: 14px; padding: 6px 8px 6px 14px; box-shadow: var(--shadow); font-weight: 700; }
+  .lang .chev { width: 30px; height: 30px; border-radius: 50%; background: var(--tomato); border: 2px solid var(--ink); display: grid; place-items: center; font-size: 13px; }
+
+  /* Menu */
+  .menu-panel { position: absolute; z-index: 20; top: 62px; right: 0; background: var(--paper); border: 2px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 6px; min-width: 220px; display: none; text-align: start; }
+  .menu-panel.open { display: block; }
+  .menu-panel a { display: block; padding: 10px 12px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .menu-panel a:hover { background: var(--sun-soft); }
+
+  /* Cards & buttons */
+  .card { background: var(--paper); border: 2px solid var(--ink); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 18px; }
+  .card.center { text-align: center; }
+  .note-card { position: relative; background: var(--sun-soft); border: 2px solid var(--ink); border-radius: 16px; box-shadow: var(--shadow); padding: 22px 18px 18px; }
+  .note-card .tape { position: absolute; top: -10px; right: 18px; width: 56px; height: 16px; background: var(--tomato); border: 2px solid var(--ink); transform: rotate(-8deg); border-radius: 3px; }
+  .btn { display: inline-flex; width: 100%; min-height: 56px; align-items: center; justify-content: center; gap: 8px; border: 2px solid var(--ink); border-radius: 12px; padding: 4px 18px 0; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; box-shadow: var(--shadow); cursor: pointer; user-select: none; transition: transform .1s, box-shadow .1s; }
+  .btn:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: none; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-blue { background: var(--tomato); }
+  .btn-pink { background: var(--sun); }
+  .btn-white { background: var(--paper); }
+  .btn-wa { background: var(--wa); } .btn-tg { background: var(--tg); } .btn-fb { background: var(--fb); }
+  .btn-sm { min-height: 44px; font-size: 1rem; width: auto; padding: 2px 16px 0; }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .muted { color: var(--muted); }
+  .small { font-size: .9rem; }
+  .pink { color: var(--tomato); }
+  .big { font-size: 1.6rem; }
+  .mark { background: linear-gradient(transparent 40%, var(--sun) 40%); padding: 0 4px; }
+  .name-hl { color: var(--tomato); font-weight: 800; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 Q5 1 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23ffc83d' stroke-width='3'/%3E%3C/svg%3E") repeat-x bottom; padding-bottom: 6px; }
+  .squiggle { width: 160px; height: 10px; margin: 10px auto; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 6 Q5 1 10 6 T20 6 T30 6 T40 6' fill='none' stroke='%23ff5b3a' stroke-width='3'/%3E%3C/svg%3E") repeat-x; }
+  .field { width: 100%; height: 56px; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); padding: 0 16px; font: inherit; font-size: 1.15rem; color: inherit; text-align: center; }
+  .field:focus { outline: none; box-shadow: 0 0 0 3px var(--sky); }
+  .field-ltr { direction: ltr; font-size: .95rem; }
+  .counter { text-align: end; font-size: .85rem; color: var(--muted); margin-top: 6px; }
+  .alert { border: 2px solid var(--ink); border-radius: 12px; background: var(--tomato-soft); padding: 12px 16px; text-align: center; font-weight: 700; }
+  .alert-ok { background: var(--mint-soft); }
+  .tip { font-size: .9rem; color: var(--muted); text-align: center; }
+
+  /* Hero (home) */
+  .hero-card { position: relative; margin-top: 4px; }
+  .hero-card .mascots { position: relative; height: 140px; margin: -4px 0 6px; }
+  .hero-card .mascots .big-emoji { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 72px; line-height: 1; }
+  .g-emoji { display: block; font-size: 64px; line-height: 1.2; margin-bottom: 6px; }
+  .empty-card .big-emoji { font-size: 56px; margin-bottom: 4px; }
+  .hero-card .mascots .m1 { right: 22%; transform: translateX(10%); }
+  .hero-card .mascots .m2 { left: 22%; transform: translateX(-10%) scaleX(-1); }
+  .hero-card .mascots .heart { position: absolute; top: 8px; left: 10px; font-size: 26px; animation: float 3s ease-in-out infinite; }
+  .hero-card .mascots .spark { position: absolute; top: 20px; right: 14px; font-size: 20px; animation: float 3.6s ease-in-out infinite reverse; }
+  .hero-card h1 { font-size: 1.7rem; line-height: 1.5; }
+  .hero-card .and { color: var(--tomato); font-size: 1.3rem; }
+  .how { padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .how h2 { text-align: center; font-size: 1.5rem; }
+  .how > p { text-align: center; margin: -6px 0 2px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 16px; box-shadow: var(--shadow); }
+  .step .tile { width: 50px; height: 50px; flex-shrink: 0; border: 2px solid var(--ink); border-radius: 12px; display: grid; place-items: center; font-size: 24px; }
+  .tile.pink { background: var(--tomato-soft); } .tile.blue { background: var(--sky); } .tile.yellow { background: var(--sun); }
+  .step h3 { font-size: 1.1rem; }
+  .step p { color: var(--muted); font-size: .95rem; }
+
+  /* Gender cards */
+  .gender { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .gender button { border: 2px solid var(--ink); background: var(--paper); border-radius: 16px; padding: 14px 8px 10px; box-shadow: var(--shadow); cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; transition: transform .1s, box-shadow .1s; }
+  .gender button:nth-child(1) { transform: rotate(-3deg); } .gender button:nth-child(2) { transform: rotate(3deg); }
+  .gender button:hover, .gender button:focus-visible { background: var(--sun-soft); }
+  .gender button:active { transform: translate(3px, 3px); box-shadow: none; }
+  .gender svg { width: 110px; height: 110px; display: block; margin: 0 auto 6px; }
+
+  /* Question screen */
+  .q-sky { margin: 0; padding: 0 0 6px !important; }
+  .prog { position: relative; height: 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); margin: 10px 0 22px; }
+  .prog > i { position: absolute; top: 0; bottom: 0; right: 0; border-radius: 999px; background: var(--tomato); transition: width .3s; }
+  .prog > b { position: absolute; top: -9px; right: 0; background: var(--sun); border: 2px solid var(--ink); font-family: var(--font-display); font-size: .85rem; border-radius: 999px; padding: 1px 10px 0; box-shadow: 2px 2px 0 0 var(--ink); }
+  .q-note { position: relative; margin: 0 4px; text-align: center; }
+  .q-tag { display: inline-block; background: var(--mint-soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; font-family: var(--font-display); font-weight: 700; transform: rotate(-3deg); margin-bottom: 8px; }
+  .q-text { font-size: 1.55rem; line-height: 1.5; font-weight: 800; color: var(--ink); }
+  .q-emoji { font-size: 2rem; margin-top: 6px; }
+  .opts { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .opt { position: relative; display: flex; align-items: center; gap: 12px; min-height: 80px; width: 100%; border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); padding: 10px 16px; text-align: start; font-size: 1.15rem; font-weight: 600; cursor: pointer; box-shadow: var(--shadow); transition: transform .1s, box-shadow .1s, background-color .1s; }
+  .opt:hover:not(:disabled) { background: var(--sun-soft); }
+  .opt:active:not(:disabled), .opt[aria-pressed="true"] { transform: translate(3px, 3px); box-shadow: none; }
+  .opt[aria-pressed="true"] { background: var(--sun); }
+  .opt .txt { flex: 1; }
+  .opt svg { width: 58px; height: 58px; flex-shrink: 0; }
+  .opt .u { display: none; }
+  .q-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .link { background: none; border: 0; padding: 6px 0; font: inherit; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+  .link:disabled { opacity: .4; cursor: default; }
+
+  /* Share */
+  .link-box { display: flex; gap: 8px; align-items: center; }
+  .link-box .field { flex: 1; height: 48px; }
+  .share-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .share-list .btn { min-height: 50px; font-size: 1.05rem; }
+
+  /* Scoreboard */
+  .ribbon { display: inline-block; position: relative; background: var(--sky); border: 2px solid var(--ink); border-radius: 12px; padding: 4px 20px 0; font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; transform: rotate(-2deg); box-shadow: var(--shadow); }
+  .count-pill { display: inline-block; background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 2px 14px; font-size: .9rem; margin-top: 14px; }
+  .board { display: flex; flex-direction: column; gap: 10px; }
+  .row-card { background: var(--paper); border: 2px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow); padding: 12px 14px; }
+  .row-card.me { background: var(--sun-soft); }
+  .row-card.blocked { opacity: .6; }
+  .row-card.blocked .who { text-decoration: line-through; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .rank { width: 32px; height: 32px; flex-shrink: 0; border: 2px solid var(--ink); border-radius: 10px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; background: var(--cream); padding-top: 2px; }
+  .row-card:nth-child(1) .rank { background: var(--sun); }
+  .row-card:nth-child(2) .rank { background: #e4e9ef; }
+  .row-card:nth-child(3) .rank { background: #f0c9a3; }
+  .grow { flex: 1; min-width: 0; }
+  .who { font-weight: 700; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .verdict { font-size: .85rem; color: var(--muted); }
+  .score { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; border: 2px solid var(--ink); background: var(--cream); border-radius: 10px; padding: 2px 10px 0; font-variant-numeric: tabular-nums; }
+  .chip { border: 2px solid var(--ink); border-radius: 10px; padding: 4px 10px 2px; font-weight: 700; font-size: .9rem; background: var(--tomato-soft); cursor: pointer; }
+  .chip.undo { background: var(--paper); }
+  .chip:disabled { opacity: .5; }
+  .picks { margin-top: 8px; }
+  .picks summary { cursor: pointer; list-style: none; font-size: .9rem; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+  .picks summary::-webkit-details-marker { display: none; }
+  .picks summary::before { content: "▸ "; } .picks[open] summary::before { content: "▾ "; }
+  .picks ol { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: .9rem; }
+  .picks .q { color: var(--muted); }
+  .right { color: var(--mint); } .wrong { color: #c2391c; }
+  .empty-card { text-align: center; }
+  .empty-card svg { width: 140px; height: 110px; display: block; margin: 0 auto 6px; }
+
+  /* Result */
+  .score-big { font-family: var(--font-display); font-size: 3.6rem; font-weight: 800; line-height: 1; color: var(--ink); direction: ltr; margin: 6px 0; }
+  .tone-good { background: var(--mint-soft); } .tone-mid { background: var(--sun-soft); } .tone-bad { background: var(--tomato-soft); }
+  .review { list-style: none; margin: 0; padding: 0; }
+  .review li { border-bottom: 2px solid rgba(30, 27, 24, .1); padding: 10px 0; }
+  .review li:last-child { border-bottom: 0; }
+
+  .skeleton { height: 240px; border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: var(--shadow); animation: pulse 1.4s ease-in-out infinite; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; }
+  .spinner { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--sun-soft); border-top-color: var(--tomato); animation: spin 1s linear infinite; }
+  pre.sql { direction: ltr; text-align: left; max-height: 320px; overflow: auto; background: var(--ink); color: var(--cream); border-radius: 12px; padding: 12px; font-size: 12px; line-height: 1.5; margin: 0; font-family: Consolas, monospace; }
+  code { direction: ltr; unicode-bidi: embed; background: var(--sun-soft); border-radius: 4px; padding: 0 4px; font-family: Consolas, monospace; font-size: .9em; }
+  .prose { display: flex; flex-direction: column; gap: 12px; line-height: 1.8; }
+  .prose ul, .prose ol { margin: 0; padding-right: 20px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+  :focus-visible { outline: 3px solid #2f7de1; outline-offset: 2px; }
+  h1[tabindex], h2[tabindex] { outline: none; }
+  .ad { margin: 4px 0; overflow: hidden; }
+
+  /* Delight: confetti, the "block" stamp, the story card */
+  .confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+  .row-card { position: relative; overflow: hidden; }
+  .stamp { position: absolute; top: 6px; right: 48px; transform: rotate(-12deg); border: 3px solid #c2391c; color: #c2391c; border-radius: 8px; padding: 0 8px; font-family: var(--font-display); font-weight: 800; font-size: .95rem; letter-spacing: 1px; opacity: .85; pointer-events: none; animation: stamp .35s cubic-bezier(.2, 1.4, .4, 1) both; }
+  .story-card { text-align: center; }
+  .story-card img { width: 100%; max-width: 230px; border: 2px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow); display: block; margin: 10px auto 12px; }
+  .story-card .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @keyframes stamp { from { transform: rotate(-25deg) scale(2.2); opacity: 0; } to { transform: rotate(-12deg) scale(1); opacity: .85; } }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); background: var(--ink); color: var(--cream); border-radius: 999px; padding: 8px 18px; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; opacity: 0; pointer-events: none; z-index: 60; transition: opacity .2s, transform .2s; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .opt.wiggle { animation: wiggle .4s ease-in-out; }
+  @keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.5deg); } 75% { transform: rotate(1.5deg); } }
+
+  .enter { animation: enter .26s cubic-bezier(.2, .8, .2, 1) both; }
+  .pop { animation: pop .42s cubic-bezier(.3, 1.6, .5, 1) both; }
+  @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.6) rotate(-6deg); } to { opacity: 1; transform: none; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes pulse { 50% { opacity: .55; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cloud" viewBox="0 0 100 60">
+    <path d="M20 50 a16 16 0 0 1 4 -31 a20 20 0 0 1 38 -6 a14 14 0 0 1 24 10 a13 13 0 0 1 -4 27 z" fill="#fff"/>
+  </symbol>
+  <symbol id="edge" viewBox="0 0 440 46" preserveAspectRatio="none">
+    <path d="M0 46 V30 C25 18 45 18 62 28 C80 10 110 8 130 24 C145 6 185 4 205 22 C225 8 255 10 272 26 C290 10 330 8 352 26 C370 12 405 14 420 30 C430 26 435 28 440 30 V46 Z" fill="#f4f9ff"/>
+  </symbol>
+</svg>
+
+<div class="phone">
+  <main id="app"></main>
+  <footer class="site-footer">
+    <a href="#/privacy">سياسة الخصوصية</a><span aria-hidden="true">·</span><a href="#/setup">الإعداد</a>
+  </footer>
+</div>
+
+<!-- Supabase setup SQL, shown on #/setup. Run once in Supabase → SQL Editor. -->
+<script type="text/plain" id="setup-sql">
+-- friends.html: run once in Supabase → SQL Editor → New query → Run.
+-- Tables are locked (RLS on, no policies, no grants); the browser can only call the fr_* functions,
+-- which score answers on the server and check the owner key, so correct answers never leak before submitting.
+
+create table if not exists public.quizzes (
+  id             text primary key,
+  creator_name   text not null check (char_length(creator_name) between 1 and 24),
+  gender         text not null default 'm' check (gender in ('m', 'f')),
+  questions      text[] not null check (cardinality(questions) = 10),
+  answers        smallint[] not null check (cardinality(answers) = 10),
+  owner_key_hash text not null,
+  created_at     timestamptz not null default now()
+);
+
+create table if not exists public.attempts (
+  id         uuid primary key default gen_random_uuid(),
+  quiz_id    text not null references public.quizzes (id) on delete cascade,
+  name       text not null check (char_length(name) between 1 and 24),
+  picks      smallint[] not null,
+  score      smallint not null check (score >= 0),
+  total      smallint not null check (total > 0 and score <= total and cardinality(picks) = total),
+  blocked    boolean not null default false,  -- a playful label on the board, nothing more
+  tries      smallint not null default 1,     -- a friend retaking replaces their own row and bumps this
+  created_at timestamptz not null default now()
+);
+
+create index if not exists attempts_board_idx on public.attempts (quiz_id, score desc, created_at);
+create unique index if not exists attempts_quiz_name_idx on public.attempts (quiz_id, lower(name));
+
+alter table public.quizzes enable row level security;
+alter table public.attempts enable row level security;
+revoke all on public.quizzes, public.attempts from public, anon, authenticated;
+
+create or replace function public.fr_clean_name(p text) returns text
+language plpgsql immutable set search_path = public as $$
+declare v text;
+begin
+  v := regexp_replace(coalesce(p, ''), '[[:cntrl:]‎‏‪-‮⁦-⁩]', '', 'g');
+  v := btrim(regexp_replace(v, '\s+', ' ', 'g'));
+  if char_length(v) = 0 then raise exception 'الاسم مطلوب'; end if;
+  if char_length(v) > 24 then raise exception 'الاسم لازم يكون أقل من 24 حرف'; end if;
+  return v;
+end $$;
+
+create or replace function public.fr_hash(p_key text) returns text
+language sql immutable set search_path = public as $$
+  select encode(sha256(convert_to(coalesce(p_key, ''), 'UTF8')), 'hex')
+$$;
+
+-- Public board: names and scores only.
+create or replace function public.fr_board(p_id text) returns json
+language sql stable security definer set search_path = public as $$
+  select coalesce(json_agg(t), '[]'::json) from (
+    select id, name, score, total, blocked from attempts
+    where quiz_id = p_id order by score desc, created_at asc limit 300
+  ) t
+$$;
+
+-- Owner board: also each friend's picks. Not callable from the browser (see revoke below).
+create or replace function public.fr_board_private(p_id text) returns json
+language sql stable security definer set search_path = public as $$
+  select coalesce(json_agg(t), '[]'::json) from (
+    select id, name, score, total, blocked, picks, tries, created_at from attempts
+    where quiz_id = p_id order by score desc, created_at asc limit 300
+  ) t
+$$;
+
+create or replace function public.fr_create_quiz(p_name text, p_questions text[], p_answers int[], p_gender text default 'm') returns json
+language plpgsql security definer set search_path = public as $$
+declare v_id text; v_key text;
+begin
+  if cardinality(p_questions) is distinct from 10 or cardinality(p_answers) is distinct from 10 then
+    raise exception 'لازم تجاوب على كل الأسئلة';
+  end if;
+  if (select count(distinct q) from unnest(p_questions) q where q ~ '^[a-z]{2,16}$') <> 10 then
+    raise exception 'سؤال غير صالح';
+  end if;
+  if exists (select 1 from unnest(p_answers) a where a is null or a < 0 or a > 3) then
+    raise exception 'إجابة غير صالحة';
+  end if;
+  v_id := substr(md5(gen_random_uuid()::text), 1, 10);
+  v_key := replace(gen_random_uuid()::text, '-', '') || replace(gen_random_uuid()::text, '-', '');
+  insert into quizzes (id, creator_name, gender, questions, answers, owner_key_hash)
+  values (v_id, fr_clean_name(p_name), case when p_gender = 'f' then 'f' else 'm' end, p_questions, p_answers::smallint[], fr_hash(v_key));
+  return json_build_object('id', v_id, 'owner_key', v_key);
+end $$;
+
+create or replace function public.fr_get_quiz(p_id text) returns json
+language sql stable security definer set search_path = public as $$
+  select json_build_object('id', id, 'creator_name', creator_name, 'gender', gender, 'questions', questions)
+  from quizzes where id = p_id
+$$;
+
+-- Scores on the server. Submitting again under the same name replaces that friend's row (tries goes up),
+-- and each quiz is capped at 300 friends so nobody can flood a board with fake rows.
+create or replace function public.fr_submit(p_id text, p_name text, p_answers int[]) returns json
+language plpgsql security definer set search_path = public as $$
+declare v_correct smallint[]; v_name text; v_score int; v_attempt uuid; v_tries int;
+begin
+  select answers into v_correct from quizzes where id = p_id;
+  if not found then raise exception 'الكويز ده مش موجود'; end if;
+  v_name := fr_clean_name(p_name);
+  if cardinality(p_answers) is distinct from cardinality(v_correct) then
+    raise exception 'لازم تجاوب على كل الأسئلة';
+  end if;
+  if exists (select 1 from unnest(p_answers) a where a is null or a < 0 or a > 3) then
+    raise exception 'إجابة غير صالحة';
+  end if;
+  if not exists (select 1 from attempts where quiz_id = p_id and lower(name) = lower(v_name))
+     and (select count(*) from attempts where quiz_id = p_id) >= 300 then
+    raise exception 'الكويز ده اتزحم خلاص (٣٠٠ محاولة). اعمل كويز جديد';
+  end if;
+  select count(*) into v_score from generate_subscripts(v_correct, 1) i where p_answers[i] = v_correct[i];
+  insert into attempts (quiz_id, name, picks, score, total)
+  values (p_id, v_name, p_answers::smallint[], v_score, cardinality(v_correct))
+  on conflict (quiz_id, lower(name)) do update
+    set name = excluded.name, picks = excluded.picks, score = excluded.score, total = excluded.total,
+        tries = attempts.tries + 1, created_at = now()
+  returning id, tries into v_attempt, v_tries;
+  return json_build_object('attempt_id', v_attempt, 'score', v_score, 'total', cardinality(v_correct),
+                           'tries', v_tries, 'correct', v_correct, 'board', fr_board(p_id));
+end $$;
+
+-- Owner only: creator name, the quiz's questions and correct answers, and every friend's picks.
+create or replace function public.fr_owner_board(p_id text, p_key text) returns json
+language plpgsql stable security definer set search_path = public as $$
+declare v_quiz quizzes%rowtype;
+begin
+  select * into v_quiz from quizzes where id = p_id and owner_key_hash = fr_hash(p_key);
+  if not found then raise exception 'مش مسموح'; end if;
+  return json_build_object('creator_name', v_quiz.creator_name, 'gender', v_quiz.gender, 'questions', v_quiz.questions,
+                           'answers', v_quiz.answers, 'board', fr_board_private(p_id));
+end $$;
+
+create or replace function public.fr_set_blocked(p_id text, p_key text, p_attempt uuid, p_blocked boolean) returns json
+language plpgsql security definer set search_path = public as $$
+begin
+  if not exists (select 1 from quizzes where id = p_id and owner_key_hash = fr_hash(p_key)) then
+    raise exception 'مش مسموح';
+  end if;
+  update attempts set blocked = coalesce(p_blocked, false) where id = p_attempt and quiz_id = p_id;
+  return fr_board_private(p_id);
+end $$;
+
+-- Postgres grants EXECUTE to everyone by default; keep only the browser-facing functions open.
+revoke all on function public.fr_clean_name(text), public.fr_hash(text), public.fr_board_private(text)
+  from public, anon, authenticated;
+grant execute on function public.fr_create_quiz(text, text[], int[], text), public.fr_get_quiz(text),
+  public.fr_board(text), public.fr_submit(text, text, int[]), public.fr_owner_board(text, text),
+  public.fr_set_blocked(text, text, uuid, boolean) to anon, authenticated;
+</script>
+
+<script>
+"use strict";
+
+// Settings live in the FRIENDS_CONFIG block at the very top of this file.
+const CONFIG = Object.assign({ SUPABASE_URL: "", SUPABASE_ANON_KEY: "", ADSENSE_CLIENT: "", AD_SLOT: "" }, window.FRIENDS_CONFIG);
+// Served by server.js? It speaks the same API as Supabase, on this origin.
+if (window.FRIENDS_LOCAL_SERVER && !CONFIG.SUPABASE_URL) {
+  CONFIG.SUPABASE_URL = location.origin;
+  CONFIG.SUPABASE_ANON_KEY = "local";
+}
+
+const QUIZ_LENGTH = 10;
+const NAME_MAX = 15;
+const ADVANCE_MS = 260;
+const NETWORK_ERROR = "النت فصل؟ جرّب تاني";
+const ONLINE = Boolean(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
+const SITE_NAME = "صاحبي بجد؟";
+
+// Questions are about the quiz creator in the third person, like the original game.
+// {name} = the creator's name, {male|female} = the verb form for a male|female creator.
+const QUESTIONS = [
+  { id: "food", text: "إيه أكلة {name} المفضلة؟", emoji: "🍕", options: ["كشري 🍝", "محشي 🍆", "بيتزا 🍕", "شاورما 🌯"] },
+  { id: "sleep", text: "{name} {بينام|بتنام} الساعة كام؟", emoji: "😴", options: ["قبل ١٢ 🕛", "١ أو ٢ بالليل 🌙", "مع الفجر 🌅", "{مبينامش|مبتنامش} أصلاً 🦉"] },
+  { id: "money", text: "لو {name} {معاه|معاها} ١٠٠٠ جنيه {هيعمل|هتعمل} بيهم إيه؟", emoji: "💸", options: ["أكل 🍔", "لبس 👗", "{يحوشهم|تحوشهم} 🏦", "{يصرفهم|تصرفهم} على الصحاب 🎉"] },
+  { id: "angry", text: "أكتر حاجة بتعصّب {name}؟", emoji: "😤", options: ["حد يتأخر 🕰️", "حد {يصحّيه|يصحّيها} 😴", "الزحمة 🚗", "الصوت العالي 📢"] },
+  { id: "drink", text: "مشروب {name} المفضل؟", emoji: "☕", options: ["شاي 🍵", "قهوة ☕", "عصير 🧃", "حاجة ساقعة 🥤"] },
+  { id: "reply", text: "{name} {بيرد|بترد} على الرسايل إزاي؟", emoji: "📱", options: ["فوراً ⚡", "Seen وتطنيش 👀", "بعد يومين 🐢", "{مبيردش|مبتردش} خالص 🙈"] },
+  { id: "travel", text: "لو {name} {هيسافر|هتسافر}، {يروح|تروح} فين؟", emoji: "✈️", options: ["الساحل 🏖️", "دهب 🤿", "برّه مصر 🌍", "البيت أحسن 🛋️"] },
+  { id: "fear", text: "أكتر حاجة {name} {بيخاف|بتخاف} منها؟", emoji: "😱", options: ["الصراصير 🪳", "الضلمة 🌑", "الأماكن العالية 🏔️", "الامتحانات 📝"] },
+  { id: "role", text: "دور {name} في الشلة إيه؟", emoji: "🎭", options: ["الضحك والهزار 🤣", "صوت العقل 🧠", "التأخير على طول ⏰", "السكوت والفرجة 🍿"] },
+  { id: "movies", text: "نوع الأفلام اللي {name} {بيحبه|بتحبه}؟", emoji: "🎬", options: ["كوميدي 😂", "أكشن 💥", "رعب 👻", "رومانسي 💘"] },
+  { id: "morning", text: "{name} {بيصحى|بتصحى} الصبح إزاي؟", emoji: "🌞", options: ["في قمة المزاج 😁", "نكد على طول 😩", "على المنبه العاشر ⏰", "{مبيصحاش|مبتصحاش} الصبح أصلاً 🌚"] },
+  { id: "app", text: "أكتر أبلكيشن {name} {بيفتحه|بتفتحه}؟", emoji: "📲", options: ["تيك توك 🎵", "إنستجرام 📸", "واتساب 💬", "يوتيوب ▶️"] },
+  { id: "sad", text: "لما {name} {بيزعل|بتزعل}، {بيعمل|بتعمل} إيه؟", emoji: "😢", options: ["{بينام|بتنام} 😴", "{بياكل|بتاكل} 🍫", "{بيكلم|بتكلم} حد 📞", "{بيسمع|بتسمع} أغاني 🎧"] },
+  { id: "season", text: "فصل السنة اللي {name} {بيحبه|بتحبه}؟", emoji: "🍂", options: ["الصيف ☀️", "الشتا 🌧️", "الربيع 🌸", "الخريف 🍁"] },
+  { id: "taste", text: "{name} {بيحب|بتحب} الأكل يكون إزاي؟", emoji: "🌶️", options: ["حرّاق 🔥", "مسكّر 🍰", "مالح 🧂", "أي حاجة تتاكل 😋"] },
+  { id: "lottery", text: "لو {name} {كسب|كسبت} اللوتري {هيعمل|هتعمل} إيه الأول؟", emoji: "💰", options: ["{يشتري|تشتري} عربية 🚗", "{يسافر|تسافر} ✈️", "{يعمل|تعمل} مشروع 💼", "{يختفي|تختفي} 🫥"] },
+  { id: "happy", text: "أكتر حاجة بتفرّح {name}؟", emoji: "🥹", options: ["هدية 🎁", "خروجة 🎢", "كلمة حلوة 💕", "نوم من غير منبه 😴"] },
+  { id: "football", text: "{name} في الكورة مع مين؟", emoji: "⚽", options: ["الأهلي 🔴", "الزمالك ⚪", "الدوريات برّه بس 🏆", "مليش في الكورة 🙅"] },
+  { id: "flaw", text: "أكتر عيب في {name}؟", emoji: "😅", options: ["{بيتعصب|بتتعصب} بسرعة 😤", "الكسل 🛌", "{بينسى|بتنسى} كتير 🤔", "{بيزعل|بتزعل} بسرعة 🥺"] },
+  { id: "weekend", text: "ويك إند {name} بيبقى إزاي؟", emoji: "🎉", options: ["نوم 😴", "خروج 🚶", "جيمز 🎮", "شغل أو مذاكرة 📚"] },
+];
+const QMAP = new Map(QUESTIONS.map((q) => [q.id, q]));
+
+const app = document.getElementById("app");
+
+// ---------- helpers ----------
+const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+/** Fills a question template for a given creator: {name} and {male|female} word forms. */
+const fill = (text, name, gender) => text.replace(/\{name\}/g, name).replace(/\{([^{}|]*)\|([^{}]*)\}/g, (_, m, f) => (gender === "f" ? f : m));
+
+/** The question as both the creator and their friends see it. */
+function viewQuestion(q, name, gender) {
+  return { id: q.id, emoji: q.emoji, text: fill(q.text, name, gender), options: q.options.map((o) => fill(o, name, gender)) };
+}
+
+function shuffle(list) {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/** Strips control/bidi characters and collapses whitespace (the server repeats this check). */
+const cleanName = (raw) =>
+  String(raw ?? "").replace(/[\u0000-\u001f\u007f‎‏‪-‮⁦-⁩]/g, "").replace(/\s+/g, " ").trim();
+
+const pick = (list, seed) => list[(seed ?? Math.floor(Math.random() * list.length)) % list.length];
+
+// The comedy layer: several lines per tier so results don't all read the same.
+const VERDICTS = {
+  perfect: { emoji: "👯", title: "توأم روح", tone: "good", lines: ["معرفة كاملة! إنت عارف الباسورد بتاعه كمان؟ 🤨", "١٠/١٠… إنت مش صاحبه، إنت بتعيش معاه في البيت 🏠", "الشلة لازم تعمل لك تمثال في الميدان 🗿"] },
+  good: { emoji: "🤝", title: "صداقة أصلية", tone: "good", lines: ["معرفة قوية. مكانك في الشلة محفوظ ومتأمّن 🔒", "غلطة أو اتنين… هنعديها المرة دي 😌", "الأوردر الجاي عليه، إنت مستاهل 🍕"] },
+  mid: { emoji: "😬", title: "معرفة نص نص", tone: "mid", lines: ["على الحافة… تحت المراقبة لحد إشعار آخر 👀", "نص صاحب… النص التاني فين؟ 🤔", "واضح إنك بتعمل Seen على الحكايات 📵"] },
+  bad: { emoji: "🙈", title: "فيك! بلوك (هزار)", tone: "bad", lines: ["المعلومات صفر تقريباً… إنت متأكد إنكم أصحاب؟ 😂", "البلوك جاهز، بس هزار… يعني شبه بجد 🚫", "حتى الجيران يعرفوا عنه أكتر من كده 🏘️"] },
+};
+
+function verdict(score, total) {
+  const r = total ? score / total : 0;
+  const v = r === 1 ? VERDICTS.perfect : r >= 0.7 ? VERDICTS.good : r >= 0.4 ? VERDICTS.mid : VERDICTS.bad;
+  // Same person always gets the same line (seeded by score), so the board doesn't flicker between texts.
+  return { emoji: v.emoji, title: v.title, tone: v.tone, line: pick(v.lines, score * 7 + total) };
+}
+
+const REACTIONS = ["😏 واثق كده؟", "🤔 متأكد؟", "👀 شفت الإجابة دي", "🔥 جامد!", "🙄 يعني…", "😂 لا لا لا", "🧐 نشوف", "🫣 مش عارف أقولك", "⚡ سريع!", "🤝 ماشي"];
+const LOADING = ["بنسأل الجيران عنك…", "بنفتح ملفك السري…", "بنحسب مين الفيك…", "ثانية واحدة، بنجيب الفشار 🍿"];
+const STAMPS = ["بلوك", "باي باي", "مش صاحبي", "اتفضل 🚪"];
+
+/** A small bubble that pops up for a moment (reactions after an answer). */
+let toastTimer = null;
+function toast(text) {
+  let el = document.getElementById("toast");
+  if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); document.body.appendChild(el); }
+  el.textContent = text;
+  el.classList.remove("show");
+  void el.offsetWidth;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 1100);
+}
+
+// Per-browser memory. Every access is guarded: storage can be blocked (private mode, disabled cookies).
+const mem = {
+  get(key) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; }
+  },
+  clearAll() {
+    try { Object.keys(localStorage).filter((k) => k.startsWith("friends:")).forEach((k) => localStorage.removeItem(k)); } catch { /* storage blocked */ }
+  },
+};
+const owned = {
+  all: () => mem.get("friends:owned") || [],
+  find: (id) => owned.all().find((q) => q.id === id) || null,
+  add: (quiz) => mem.set("friends:owned", [quiz, ...owned.all().filter((q) => q.id !== quiz.id)].slice(0, 20)),
+};
+const played = {
+  get: (id) => mem.get("friends:played:" + id),
+  set: (id, value) => mem.set("friends:played:" + id, value),
+};
+// Simple mode (no server): friends' results arrive as links (#/r/…) the owner taps, and live on the owner's phone.
+const localResults = {
+  all: (quizId) => (mem.get("friends:results:" + quizId) || []).sort((a, b) => b.score - a.score || (a.at || "").localeCompare(b.at || "")),
+  save: (quizId, list) => mem.set("friends:results:" + quizId, list.slice(0, 300)),
+  upsert(quizId, attempt) {
+    const list = mem.get("friends:results:" + quizId) || [];
+    const i = list.findIndex((a) => a.name.toLowerCase() === attempt.name.toLowerCase());
+    if (i >= 0) list[i] = { ...list[i], ...attempt, tries: (list[i].tries || 1) + 1 };
+    else list.push({ id: "l" + shortHash(attempt.name.toLowerCase()), blocked: false, tries: 1, ...attempt });
+    return localResults.save(quizId, list);
+  },
+  setBlocked(quizId, id, blocked) {
+    const list = mem.get("friends:results:" + quizId) || [];
+    const a = list.find((x) => x.id === id);
+    if (a) a.blocked = blocked;
+    localResults.save(quizId, list);
+  },
+};
+
+const LOCAL_HOST = /^(localhost|127\.0\.0\.1|\[::1\])$/;
+const PRIVATE_HOST = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|\[::1\]$)/;
+/** Public address for links. On the laptop at "localhost", server.js hands us the Wi-Fi address so links open on phones. */
+function pageUrl(route) {
+  const lan = LOCAL_HOST.test(location.hostname) && window.FRIENDS_PUBLIC_ORIGIN;
+  return (lan ? window.FRIENDS_PUBLIC_ORIGIN.replace(/\/$/, "") + "/" : location.href.split("#")[0]) + "#" + route;
+}
+const waLink = (text) => "https://wa.me/?text=" + encodeURIComponent(text);
+const tgLink = (url, text) => `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+const fbLink = (url) => "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+
+// ---------- quiz-in-a-link (simple mode) ----------
+function encodeJson(obj) {
+  let bin = "";
+  new TextEncoder().encode(JSON.stringify(obj)).forEach((b) => (bin += String.fromCharCode(b)));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+function decodeJson(str) {
+  try {
+    const bin = atob(String(str).replace(/-/g, "+").replace(/_/g, "/"));
+    return JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+  } catch {
+    return null;
+  }
+}
+const validPicks = (p) => Array.isArray(p) && p.length === QUIZ_LENGTH && p.every((x) => Number.isInteger(x) && x >= 0 && x < 4);
+const validName = (n) => Boolean(n) && [...n].length <= 24;
+const validGender = (g) => (g === "f" ? "f" : "m");
+
+/** A quiz carried inside its own link: { n: creator, g: gender, q: question ids, a: correct answers }. */
+function decodePayload(str) {
+  const quiz = decodeJson(str);
+  if (!quiz || typeof quiz !== "object") return null;
+  const name = cleanName(quiz.n);
+  const valid = validName(name) && Array.isArray(quiz.q) && quiz.q.length === QUIZ_LENGTH && quiz.q.every((id) => QMAP.has(id)) && validPicks(quiz.a);
+  return valid ? { n: name, g: validGender(quiz.g), q: quiz.q, a: quiz.a } : null;
+}
+/** A friend's result carried in the link they send back: { k: quiz key, n: friend, c: creator, p: picks, s: score }. */
+function decodeResult(str) {
+  const r = decodeJson(str);
+  if (!r || typeof r !== "object") return null;
+  const name = cleanName(r.n), creator = cleanName(r.c);
+  const valid = typeof r.k === "string" && /^p[0-9a-z]{1,8}$/.test(r.k) && validName(name) && validName(creator) && validPicks(r.p) &&
+    Number.isInteger(r.s) && r.s >= 0 && r.s <= QUIZ_LENGTH;
+  return valid ? { k: r.k, n: name, c: creator, p: r.p, s: r.s } : null;
+}
+function shortHash(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
+}
+
+// ---------- online mode: Supabase SQL functions (or server.js, same API) ----------
+const RPC_TIMEOUT_MS = 10000;
+async function rpc(fn, args) {
+  // A request that never answers would leave the page stuck on a spinner; give up after a while instead.
+  const abort = new AbortController();
+  const timer = setTimeout(() => abort.abort(), RPC_TIMEOUT_MS);
+  let res;
+  try {
+    res = await fetch(`${CONFIG.SUPABASE_URL.replace(/\/$/, "")}/rest/v1/rpc/${fn}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: CONFIG.SUPABASE_ANON_KEY, Authorization: `Bearer ${CONFIG.SUPABASE_ANON_KEY}` },
+      body: JSON.stringify(args),
+      signal: abort.signal,
+    });
+  } catch (err) {
+    throw new Error(err && err.name === "AbortError" ? "السيرفر مش بيرد… اتأكد إنه شغال وجرّب تاني" : NETWORK_ERROR);
+  } finally {
+    clearTimeout(timer);
+  }
+  const data = await res.json().catch(() => null);
+  if (res.ok) return data;
+  if (data && data.code === "P0001") throw new Error(data.message);
+  if (res.status === 404) throw new Error("كود الـ SQL لسه متشغّلش في مشروع Supabase. افتح صفحة الإعداد وشغّله الأول.");
+  if (res.status === 401 || res.status === 403) throw new Error("مفتاح Supabase غلط. اتأكد إنك حاطط الـ anon public key في FRIENDS_CONFIG.");
+  throw new Error("حصلت مشكلة، جرّب تاني");
+}
+
+// ---------- ads ----------
+let adsScriptLoaded = false;
+const adHtml = () =>
+  CONFIG.ADSENSE_CLIENT && CONFIG.AD_SLOT
+    ? `<div class="ad" aria-label="إعلان"><ins class="adsbygoogle" style="display:block" data-ad-client="${esc(CONFIG.ADSENSE_CLIENT)}" data-ad-slot="${esc(CONFIG.AD_SLOT)}" data-ad-format="auto" data-full-width-responsive="true"></ins></div>`
+    : "";
+function mountAds() {
+  const slots = app.querySelectorAll("ins.adsbygoogle:not([data-adsbygoogle-status])");
+  if (!slots.length) return;
+  if (!adsScriptLoaded) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(CONFIG.ADSENSE_CLIENT);
+    document.head.appendChild(s);
+    adsScriptLoaded = true;
+  }
+  slots.forEach(() => { try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch { /* blocked */ } });
+}
+
+// ---------- rendering ----------
+let routeToken = 0;
+
+function show(html, bind) {
+  app.innerHTML = html;
+  if (bind) bind(app);
+  bindMenu(app);
+  const target = app.querySelector("[data-autofocus]") || app.querySelector("h1, h2");
+  if (target) {
+    if (!("value" in target) && !target.hasAttribute("tabindex")) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
+  }
+  mountAds();
+}
+
+const skeleton = () => show(`${header()}<div class="skeleton" role="status" aria-busy="true"><div><div class="spinner" style="margin:0 auto 10px"></div>${pick(LOADING)}</div></div>`);
+const alertHtml = (msg, ok = false) => (msg ? `<p role="alert" class="alert ${ok ? "alert-ok" : ""}">${esc(msg)}</p>` : "");
+
+const cloudEdge = () => `<div class="cloud-edge"><svg><use href="#edge"/></svg></div>`;
+const cloud = (style) => `<svg class="deco" style="${style}" viewBox="0 0 100 60"><use href="#cloud"/></svg>`;
+
+/** Compact sky header with menu + back, used on every inner page. */
+function header({ back = "#/" } = {}) {
+  return `
+    <header class="sky q-sky" style="padding-bottom:50px">
+      ${cloud("width:70px;left:-10px;top:52px")}${cloud("width:50px;right:8px;top:14px;opacity:.7")}
+      <div class="topbar">
+        <button type="button" class="round-btn" id="menu-btn" aria-label="القائمة" aria-expanded="false">☰</button>
+        <a href="#/" class="logo small" aria-label="${SITE_NAME}"><b>صاحبي</b><i>بجد؟</i></a>
+        <a href="${esc(back)}" class="round-btn" aria-label="رجوع">›</a>
+      </div>
+      <nav class="menu-panel" id="menu-panel">
+        <a href="#/">🏠 الرئيسية</a>
+        <a href="#/create">✍️ اعمل اختبار تاني</a>
+        <a href="#/setup">⚙️ الإعداد</a>
+        <a href="#/privacy">🔒 سياسة الخصوصية</a>
+      </nav>
+      ${cloudEdge()}
+    </header>`;
+}
+
+function bindMenu(root) {
+  const btn = root.querySelector("#menu-btn");
+  const panel = root.querySelector("#menu-panel");
+  if (!btn || !panel) return;
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = panel.classList.toggle("open");
+    btn.setAttribute("aria-expanded", String(open));
+    if (open) document.addEventListener("click", () => { panel.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }, { once: true });
+  });
+}
+
+
+function nameStep({ title, hint, cta, onSubmit }) {
+  const remembered = cleanName(mem.get("friends:lastName") || "");
+  return [
+    `<section class="card center enter">
+      <h1 class="big">${title}</h1>
+      ${hint ? `<p class="muted" style="margin-top:4px">${esc(hint)}</p>` : ""}
+      <form id="name-form" novalidate style="margin-top:16px">
+        <label for="name" class="sr-only">اسمك</label>
+        <input id="name" class="field" maxlength="${NAME_MAX}" autocomplete="given-name" placeholder="اسمك..." value="${esc(remembered)}" required data-autofocus>
+        <div class="counter"><span id="count">${[...remembered].length}</span>/${NAME_MAX}</div>
+        <button type="submit" class="btn btn-blue" style="margin-top:10px" ${remembered ? "" : "disabled"}>${esc(cta)}</button>
+      </form>
+    </section>`,
+    (root) => {
+      const form = root.querySelector("#name-form");
+      const input = form.querySelector("#name");
+      const button = form.querySelector("button");
+      const count = form.querySelector("#count");
+      input.addEventListener("input", () => {
+        count.textContent = [...input.value].length;
+        button.disabled = !cleanName(input.value);
+      });
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = cleanName(input.value);
+        if (!name) return;
+        mem.set("friends:lastName", name);
+        onSubmit(name);
+      });
+    },
+  ];
+}
+
+function questionScreen({ index, total, q, selected, disabled, skip, back, next }) {
+  const pct = Math.round(((index + 1) / total) * 100);
+  return `
+    <header class="sky q-sky">
+      ${cloud("width:60px;left:-6px;top:40px;opacity:.8")}${cloud("width:44px;right:10px;top:10px;opacity:.6")}
+      <div class="prog" aria-label="التقدم"><i style="width:${pct}%"></i><b>${index + 1}/${total}</b></div>
+      <div class="note-card q-note enter" aria-labelledby="qt">
+        <span class="tape"></span>
+        <span class="q-tag">السؤال ${index + 1}</span>
+        <h2 id="qt" class="q-text">${q.html}</h2>
+        <div class="q-emoji" aria-hidden="true">${q.emoji}</div>
+      </div>
+      ${cloudEdge()}
+    </header>
+    <div class="opts" role="group" aria-labelledby="qt">
+      ${q.options.map((o, i) => `
+        <button type="button" class="opt" data-opt="${i}" aria-pressed="${selected === i}" ${disabled ? "disabled" : ""}>
+          <span class="txt">${esc(o)}<span class="u" aria-hidden="true"></span></span>
+        </button>`).join("")}
+    </div>
+    <div class="q-nav">
+      <button type="button" class="link" id="prev" ${back ? "" : "disabled"}>→ السابق</button>
+      ${skip ? `<button type="button" class="btn btn-blue btn-sm" id="swap">🔄 غيّر السؤال</button>` : ""}
+      <button type="button" class="link" id="next" ${next ? "" : "disabled"}>التالي ←</button>
+    </div>`;
+}
+
+/** The question text with the creator's name highlighted in pink like the original. */
+function questionHtml(q, name) {
+  return esc(q.text).split(esc(name)).join(`<span class="name-hl">${esc(name)}</span>`);
+}
+
+function shareButtons(url, message) {
+  return `
+    <div class="link-box">
+      <label for="share-url" class="sr-only">لينك الاختبار</label>
+      <input id="share-url" class="field field-ltr" readonly value="${esc(url)}">
+      <button type="button" class="btn btn-blue btn-sm" id="share-copy"><span aria-live="polite">نسخ</span></button>
+    </div>
+    <div class="share-list">
+      <a class="btn btn-wa" target="_blank" rel="noopener noreferrer" href="${esc(waLink(`${message}\n${url}`))}">💬 شارك على واتساب</a>
+      <a class="btn btn-tg" target="_blank" rel="noopener noreferrer" href="${esc(tgLink(url, message))}">✈️ تيليجرام</a>
+      <a class="btn btn-fb" target="_blank" rel="noopener noreferrer" href="${esc(fbLink(url))}">📘 فيسبوك</a>
+      <button type="button" class="btn btn-white" id="share-native">📲 تطبيقات تانية (إنستجرام، سناب…)</button>
+    </div>`;
+}
+
+function bindShare(root, url, message) {
+  const input = root.querySelector("#share-url");
+  input.addEventListener("focus", () => input.select());
+  root.querySelector("#share-copy").addEventListener("click", (e) => copyText(url, input, e.currentTarget.querySelector("span"), "نسخ"));
+  root.querySelector("#share-native").addEventListener("click", async () => {
+    if (navigator.share) {
+      try { await navigator.share({ text: message, url }); } catch { /* closed */ }
+    } else {
+      copyText(url, input, root.querySelector("#share-copy span"), "نسخ");
+    }
+  });
+}
+
+/** Copies text; on plain http (e.g. the Wi-Fi address) falls back to selecting the input and the old copy command. */
+async function copyText(text, fallbackInput, label, idleLabel) {
+  try {
+    await navigator.clipboard.writeText(text);
+    label.textContent = "اتنسخ ✓";
+  } catch {
+    const wasReadOnly = fallbackInput.readOnly;
+    fallbackInput.readOnly = false;
+    fallbackInput.focus();
+    fallbackInput.setSelectionRange(0, fallbackInput.value.length);
+    const ok = document.execCommand("copy");
+    fallbackInput.readOnly = wasReadOnly;
+    label.textContent = ok ? "اتنسخ ✓" : "دوس مطوّل وانسخ";
+  }
+  setTimeout(() => (label.textContent = idleLabel), 2000);
+}
+
+/** One friend's answers, question by question. Owner view only. */
+function picksHtml(attempt, questions, answers) {
+  if (!Array.isArray(attempt.picks) || !questions) return "";
+  const lines = questions.map((q, i) => {
+    const pick = attempt.picks[i];
+    const right = pick === answers[i];
+    return `<li><span class="${right ? "right" : "wrong"}">${right ? "✓" : "✗"}</span> <span class="q">${esc(q.text)}</span> ${esc(q.options[pick] ?? "—")}</li>`;
+  });
+  const tries = attempt.tries > 1 ? ` (محاولة رقم ${attempt.tries})` : "";
+  return `<details class="picks" data-id="${esc(attempt.id)}"><summary>إجابات ${esc(attempt.name)} بالتفصيل${tries}</summary><ol>${lines.join("")}</ol></details>`;
+}
+
+function boardHtml(attempts, { meId = null, owner = false, empty = "", busyId = null, questions = null, answers = null } = {}) {
+  if (!attempts.length) return empty;
+  return `<div class="board">${attempts.map((a, i) => {
+    const v = verdict(a.score, a.total);
+    return `
+      <div class="row-card ${a.id === meId ? "me" : ""} ${a.blocked ? "blocked" : ""}">
+        <div class="row">
+          <span class="rank">${i + 1}</span>
+          <div class="grow">
+            <p class="who">${esc(a.name)}${a.id === meId ? ` <span class="small muted">(إنت)</span>` : ""}</p>
+            <p class="verdict">${a.blocked ? "🚫 بلوك (هزار)" : `${v.emoji} ${v.title}`}</p>
+          ${a.blocked ? `<span class="stamp" aria-hidden="true">${pick(STAMPS, a.name.length)}</span>` : ""}
+          </div>
+          <span class="score">${a.score}/${a.total}</span>
+          ${owner ? `<button type="button" class="chip ${a.blocked ? "undo" : ""}" data-block="${esc(a.id)}" ${busyId === a.id ? "disabled" : ""}>${a.blocked ? "فك البلوك" : "بلوك 🚫"}</button>` : ""}
+        </div>
+        ${owner ? picksHtml(a, questions, answers) : ""}
+      </div>`;
+  }).join("")}</div>`;
+}
+
+/** Re-renders a results board without collapsing the "إجابات … بالتفصيل" panels the owner has open. */
+function withOpenPanelsKept(render) {
+  const open = new Set([...document.querySelectorAll(".picks[open]")].map((d) => d.dataset.id));
+  render();
+  document.querySelectorAll(".picks").forEach((d) => { if (open.has(d.dataset.id)) d.open = true; });
+}
+
+const emptyBoard = (title, body) => `
+  <section class="card empty-card">
+    <div class="big-emoji" aria-hidden="true">😴</div>
+    <h3 class="pink">${title}</h3>
+    <p class="muted small">${body}</p>
+  </section>`;
+
+const scoreboardTitle = (count) => `
+  <div style="text-align:center;margin-top:6px">
+    <span class="ribbon">🏆 لوحة الدرجات 🏆</span><br>
+    <span class="count-pill">عدد الصحاب اللي شاركوا: ${count}</span>
+  </div>`;
+
+function messageCard({ emoji, title, body, href, cta }) {
+  return `${header()}
+    <section class="card center enter">
+      <div style="font-size:2.6rem" aria-hidden="true">${emoji}</div>
+      <h1 class="big" style="margin:4px 0 6px">${title}</h1>
+      <p class="muted" style="margin-bottom:16px">${body}</p>
+      <a class="btn btn-blue" href="${href}">${cta}</a>
+    </section>`;
+}
+
+// ---------- pages ----------
+function home() {
+  show(`
+    <header class="sky tall" style="margin:-16px -16px 0">
+      ${cloud("width:90px;left:-14px;top:30px")}${cloud("width:60px;right:-4px;top:12px;opacity:.8")}${cloud("width:50px;right:40px;top:120px;opacity:.6")}
+      <div class="logo-wrap">
+        <a href="#/" class="logo" aria-label="${SITE_NAME}"><b>صاحبي</b><i>بجد؟</i></a>
+      </div>
+      <div><span class="tagline">اكشف صحابك الفيك</span></div>
+      <div class="lang" aria-label="اللغة"><span>🌐 العربية (مصري)</span><span class="chev">▾</span></div>
+      ${cloudEdge()}
+    </header>
+    <section class="card center hero-card enter">
+      <div class="mascots">
+        <span class="spark" aria-hidden="true">✨</span>
+        <span class="big-emoji" aria-hidden="true">🫵😏</span>
+        <span class="heart" aria-hidden="true">💗</span>
+      </div>
+      <h1>اعمل اختبارك<br><span class="and">و</span><br><span class="mark">اعمل بلوك</span> لصحابك الفيك</h1>
+      <div class="squiggle" aria-hidden="true"></div>
+      <a href="#/create" class="btn btn-blue">اعمل اختبار ›</a>
+    </section>
+    ${lanHint()}
+    <section class="how">
+      <h2>بتلعبها إزاي؟</h2>
+      <p class="pink small">نكشف صحابك الفيك، والقرار ليك: مين يستاهل البلوك؟ 🚫</p>
+      <div class="step"><span class="tile pink">✍️</span><div><h3>اعمل اختبارك</h3><p>إجاباتك على ١٠ أسئلة سريعة عنك بتكشف الناس تعرفك قد إيه.</p></div></div>
+      <div class="step"><span class="tile blue">📤</span><div><h3>ابعته لصحابك</h3><p>تحدّى صحابك يثبتوا إن صداقتهم حقيقية! على واتساب أو إنستجرام أو سناب.</p></div></div>
+      <div class="step"><span class="tile yellow">🏆</span><div><h3>اكشف الصحاب الفيك</h3><p>شوف درجاتهم وإجاباتهم، وحط "بلوك" على اللي جاب درجة واطية (هزار 😄).</p></div></div>
+    </section>
+    ${mineHtml()}
+    ${adHtml()}`);
+}
+
+function mineHtml() {
+  const mine = owned.all();
+  if (!mine.length) return "";
+  return `
+    <section class="card">
+      <h2 style="font-size:1.1rem;margin-bottom:8px">اختباراتك</h2>
+      <div class="stack">${mine.map((q) => `<a class="btn btn-white" href="#/results/${esc(q.id)}">🏆 درجات اختبار ${esc(q.name)}</a>`).join("")}</div>
+    </section>`;
+}
+
+/** Shown on the laptop when it is browsing "localhost": phones need the Wi-Fi address instead. */
+const lanHint = () =>
+  LOCAL_HOST.test(location.hostname) && window.FRIENDS_PUBLIC_ORIGIN
+    ? `<p class="tip">📶 عشان اللينكات تفتح على الموبايل، افتح الموقع من: <a href="${esc(window.FRIENDS_PUBLIC_ORIGIN)}/" dir="ltr">${esc(window.FRIENDS_PUBLIC_ORIGIN)}</a></p>`
+    : "";
+
+const sameWifiTip = () => (PRIVATE_HOST.test(location.hostname) ? `<p class="tip">📶 اللينك شغال لصحابك اللي على نفس الواي فاي والسيرفر شغال. عشان يفتح من أي مكان، شوف <a href="#/setup">الإعداد</a>.</p>` : "");
+
+// ---- create flow: name → gender → questions → ready ----
+function create() {
+  const token = routeToken;
+  const s = { name: null, gender: null, qs: [], answers: [], cur: 0, busy: false, error: null, timer: null };
+
+  const [nameHtml, bindName] = nameStep({ title: "إيه اسمك؟", cta: "متابعة", onSubmit: (name) => { s.name = name; genderStep(); } });
+  show(header() + nameHtml, bindName);
+
+  function genderStep() {
+    show(`${header()}
+      <section class="center enter">
+        <h1 class="big">أهلاً يا ${esc(s.name)} 👋</h1>
+        <div class="card" style="display:inline-block;padding:8px 26px 4px;margin-top:8px"><span style="font-weight:800;font-size:1.2rem">اختار <span class="name-hl">جنسك</span></span></div>
+        <div class="gender" style="margin-top:22px">
+          <button type="button" data-g="f"><span class="g-emoji" aria-hidden="true">👩</span>أنثى</button>
+          <button type="button" data-g="m"><span class="g-emoji" aria-hidden="true">👨</span>ذكر</button>
+        </div>
+      </section>`,
+      (root) => root.querySelectorAll("[data-g]").forEach((b) => b.addEventListener("click", () => {
+        s.gender = b.dataset.g;
+        s.qs = shuffle(QUESTIONS).slice(0, QUIZ_LENGTH);
+        s.answers = s.qs.map(() => null);
+        renderQ();
+      })));
+  }
+
+  function renderQ() {
+    const q = viewQuestion(s.qs[s.cur], s.name, s.gender);
+    q.html = questionHtml(q, s.name);
+    const isLast = s.cur === s.qs.length - 1;
+    const allAnswered = s.answers.every((a) => a !== null);
+    show(`
+      ${questionScreen({ index: s.cur, total: s.qs.length, q, selected: s.answers[s.cur], disabled: s.busy, skip: true, back: s.cur > 0 && !s.busy, next: !isLast && s.answers[s.cur] !== null })}
+      ${isLast ? `<button type="button" class="btn btn-pink" id="finish" ${!allAnswered || s.busy ? "disabled" : ""}>${s.busy ? "بنجهّز اختبارك…" : "خلّصت! 🎉"}</button>` : ""}
+      ${isLast && !allAnswered && !s.busy ? `<p class="tip">فاضل أسئلة مجاوبتش عليها، ارجع لها بزرار السابق.</p>` : ""}
+      ${alertHtml(s.error)}`,
+      (root) => {
+        root.querySelectorAll("[data-opt]").forEach((b) => b.addEventListener("click", () => {
+          s.answers[s.cur] = Number(b.dataset.opt);
+          clearTimeout(s.timer);
+          toast(pick(REACTIONS));
+          renderQ();
+          if (!isLast) s.timer = setTimeout(() => { if (token === routeToken) { s.cur++; renderQ(); } }, ADVANCE_MS);
+        }));
+        root.querySelector("#prev").addEventListener("click", () => { clearTimeout(s.timer); s.cur--; renderQ(); });
+        root.querySelector("#next").addEventListener("click", () => { clearTimeout(s.timer); s.cur++; renderQ(); });
+        root.querySelector("#swap").addEventListener("click", () => {
+          clearTimeout(s.timer);
+          const used = new Set(s.qs.map((x) => x.id));
+          const pool = QUESTIONS.filter((x) => !used.has(x.id));
+          if (!pool.length) return;
+          s.qs[s.cur] = pool[Math.floor(Math.random() * pool.length)];
+          s.answers[s.cur] = null;
+          renderQ();
+        });
+        root.querySelector("#finish")?.addEventListener("click", finish);
+      });
+  }
+
+  async function finish() {
+    s.busy = true;
+    s.error = null;
+    renderQ();
+    const ids = s.qs.map((q) => q.id);
+    if (!ONLINE) {
+      const payload = encodeJson({ n: s.name, g: s.gender, q: ids, a: s.answers });
+      owned.add({ id: "p" + shortHash(payload), name: s.name, payload });
+      return ready("#/share/" + payload);
+    }
+    try {
+      const res = await rpc("fr_create_quiz", { p_name: s.name, p_questions: ids, p_answers: s.answers, p_gender: s.gender });
+      owned.add({ id: res.id, key: res.owner_key, name: s.name });
+      if (token !== routeToken) return;
+      ready(`#/me/${res.id}/${res.owner_key}/new`);
+    } catch (err) {
+      if (token !== routeToken) return;
+      s.busy = false;
+      s.error = err.message;
+      renderQ();
+    }
+  }
+
+  function ready(href) {
+    confetti(2200);
+    show(`${header()}
+      <section class="card center pop">
+        <div style="font-size:3rem" aria-hidden="true">🎉</div>
+        <h1 class="big">يا سلام!<br>اختبارك جاهز!</h1>
+        <p class="muted" style="margin:8px 0 18px">ابعته لصحابك وشوف مين يعرفك بجد! 😎</p>
+        <a class="btn btn-blue" href="${esc(href)}">مشاركة دلوقتي!</a>
+        <p class="tip" style="margin-top:14px">كل ما صحاب أكتر يشاركوا، كل ما المتعة تزيد! 🎮</p>
+      </section>`);
+  }
+}
+
+// ---- friend flow: landing → name → questions → result ----
+function play(quiz) {
+  const token = routeToken;
+  if (quiz.ownerHref) {
+    // The creator opened their own quiz link (same phone): explain instead of letting them "test" it on themselves.
+    return show(`${header()}
+      <section class="card center enter">
+        <div style="font-size:2.6rem" aria-hidden="true">😄</div>
+        <h1 class="big" style="margin:4px 0 6px">ده اختبارك إنت!</h1>
+        <p class="muted" style="margin-bottom:16px">اللينك ده لصحابك عشان يحلّوه من موبايلاتهم. ابعته لهم، وإنت شوف درجاتهم من هنا.</p>
+        <div class="stack">
+          <a class="btn btn-blue" href="${esc(quiz.resultsHref || quiz.ownerHref)}">🏆 عرض الدرجات</a>
+          <a class="btn btn-white" href="${esc(quiz.ownerHref)}">📤 ابعت الاختبار لصحابك</a>
+        </div>
+      </section>`);
+  }
+  const already = played.get(quiz.key);
+  if (already) return result(quiz, already, already.attemptId ?? null);
+
+  const landing = () =>
+    show(`${header()}
+      <section class="note-card q-note enter" style="margin:0 6px">
+        <span class="tape"></span>
+        <h1 class="q-text">هل مستنيك <span class="mark">بلوك</span><br>من <span class="name-hl">${esc(quiz.creatorName)}</span>؟</h1>
+        <p class="muted" style="margin-top:10px">نشوف تعرف ${esc(quiz.creatorName)} قد إيه</p>
+      </section>
+      <button type="button" class="btn btn-blue" id="start">ابدأ الاختبار</button>
+      ${scoreboardTitle(quiz.board ? quiz.board.length : 0)}
+      ${quiz.board ? boardHtml(quiz.board, { empty: emptyBoard("فرصتك تشارك الأول! 🎯", "لسه محدش اتجرّأ. ابدأ الاختبار وخد المركز الأول قبل ما حد يسبقك 🏃") }) : `<p class="tip">لما تخلّص، نتيجتك هتتبعت لـ ${esc(quiz.creatorName)} على واتساب.</p>`}`,
+      (root) => root.querySelector("#start").addEventListener("click", askName));
+
+  function askName() {
+    const [html, bind] = nameStep({ title: "إيه اسمك؟", hint: `عشان ${quiz.creatorName} يعرف مين اللي بيحل`, cta: "يلا نبدأ", onSubmit: answer });
+    show(header() + html, bind);
+  }
+
+  function answer(name) {
+    const s = { picks: quiz.questions.map(() => null), cur: 0, busy: false, error: null, timer: null };
+    const render = () => {
+      const q = { ...quiz.questions[s.cur], html: questionHtml(quiz.questions[s.cur], quiz.creatorName) };
+      const isLast = s.cur === quiz.questions.length - 1;
+      const allAnswered = s.picks.every((p) => p !== null);
+      show(`
+        ${questionScreen({ index: s.cur, total: quiz.questions.length, q, selected: s.picks[s.cur], disabled: s.busy, skip: false, back: s.cur > 0 && !s.busy, next: !isLast && s.picks[s.cur] !== null })}
+        ${isLast ? `<button type="button" class="btn btn-pink" id="submit" ${!allAnswered || s.busy ? "disabled" : ""}>${s.busy ? "بنحسب…" : "شوف نتيجتي 🎯"}</button>` : ""}
+        ${alertHtml(s.error)}`,
+        (root) => {
+          root.querySelectorAll("[data-opt]").forEach((b) => b.addEventListener("click", () => {
+            s.picks[s.cur] = Number(b.dataset.opt);
+            clearTimeout(s.timer);
+            toast(pick(REACTIONS));
+            render();
+            if (!isLast) s.timer = setTimeout(() => { if (token === routeToken) { s.cur++; render(); } }, ADVANCE_MS);
+          }));
+          root.querySelector("#prev").addEventListener("click", () => { clearTimeout(s.timer); s.cur--; render(); });
+          root.querySelector("#next").addEventListener("click", () => { clearTimeout(s.timer); s.cur++; render(); });
+          root.querySelector("#submit")?.addEventListener("click", async () => {
+            s.busy = true;
+            s.error = null;
+            render();
+            try {
+              const res = await quiz.submit(name, s.picks);
+              const record = { name, score: res.score, total: res.total, picks: s.picks, correct: res.correct, attemptId: res.attemptId ?? null };
+              played.set(quiz.key, record);
+              if (res.board) quiz.board = res.board;
+              if (token !== routeToken) return;
+              window.scrollTo(0, 0);
+              result(quiz, record, record.attemptId);
+            } catch (err) {
+              if (token !== routeToken) return;
+              s.busy = false;
+              s.error = err.message;
+              render();
+            }
+          });
+        });
+    };
+    render();
+  }
+
+  landing();
+}
+
+// ---------- delight: confetti + a result card for Stories ----------
+function confetti(duration = 1800) {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c = document.createElement("canvas");
+  c.className = "confetti";
+  document.body.appendChild(c);
+  const ctx = c.getContext("2d");
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  c.width = innerWidth * dpr;
+  c.height = innerHeight * dpr;
+  const colors = ["#ff5b3a", "#ffc83d", "#bfe3ff", "#1f8f5f", "#ff9db8"];
+  const pieces = Array.from({ length: 140 }, () => ({
+    x: Math.random() * c.width, y: -20 * dpr - Math.random() * c.height * 0.6,
+    w: (7 + Math.random() * 7) * dpr, h: (4 + Math.random() * 4) * dpr,
+    vy: (2.2 + Math.random() * 3) * dpr, vx: (Math.random() - 0.5) * 2 * dpr,
+    rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.25,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+  const start = performance.now();
+  (function frame(now) {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const p of pieces) {
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.color; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+    }
+    if (now - start < duration) requestAnimationFrame(frame); else c.remove();
+  })(start);
+}
+
+function wrapText(ctx, text, maxWidth) {
+  const words = text.split(" "), lines = [];
+  let line = "";
+  for (const w of words) {
+    const test = line ? `${line} ${w}` : w;
+    if (ctx.measureText(test).width > maxWidth && line) { lines.push(line); line = w; } else line = test;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+/** A 1080×1920 "story" image of a result: the thing friends post on Instagram/WhatsApp status. */
+async function storyCard({ name, creator, score, total, v }) {
+  try { await document.fonts.load('800 100px "Baloo Bhaijaan 2"'); } catch { /* system font fallback */ }
+  const W = 1080, H = 1920;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  const display = (size, weight = 800) => `${weight} ${size}px "Baloo Bhaijaan 2", "Segoe UI", sans-serif`;
+  // cream dotted paper
+  ctx.fillStyle = "#fff6e9"; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = "rgba(30,27,24,.09)";
+  for (let y = 20; y < H; y += 40) for (let x = 20; x < W; x += 40) { ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill(); }
+  // sticker card with hard shadow
+  const card = { x: 100, y: 330, w: 880, h: 1260, r: 48 };
+  ctx.fillStyle = "#1e1b18"; roundRect(ctx, card.x + 16, card.y + 16, card.w, card.h, card.r); ctx.fill();
+  ctx.fillStyle = { good: "#dbf4e7", mid: "#fff1c7", bad: "#ffe1da" }[v.tone] || "#fff";
+  roundRect(ctx, card.x, card.y, card.w, card.h, card.r); ctx.fill();
+  ctx.lineWidth = 8; ctx.strokeStyle = "#1e1b18"; ctx.stroke();
+  ctx.textAlign = "center"; ctx.direction = "rtl"; ctx.textBaseline = "middle";
+  // logo: صاحبي + yellow block بجد؟
+  ctx.font = display(96);
+  ctx.save(); ctx.translate(W / 2 + 120, 200); ctx.rotate(-0.06);
+  ctx.fillStyle = "#1e1b18"; roundRect(ctx, -150 + 10, -62 + 10, 300, 124, 24); ctx.fill();
+  ctx.fillStyle = "#ffc83d"; roundRect(ctx, -150, -62, 300, 124, 24); ctx.fill(); ctx.lineWidth = 8; ctx.stroke();
+  ctx.fillStyle = "#1e1b18"; ctx.fillText("بجد؟", 0, 8); ctx.restore();
+  ctx.fillStyle = "#1e1b18"; ctx.fillText("صاحبي", W / 2 - 190, 200);
+  // mascot
+  ctx.font = display(220); ctx.fillText(v.emoji, W / 2, 530);
+  // texts
+  ctx.fillStyle = "#6b635b"; ctx.font = display(44, 700);
+  ctx.fillText(`نتيجة ${name} في اختبار ${creator}`, W / 2, 760);
+  ctx.fillStyle = "#1e1b18"; ctx.font = display(260); ctx.direction = "ltr";
+  ctx.fillText(`${score}/${total}`, W / 2, 940);
+  ctx.direction = "rtl"; ctx.font = display(84);
+  ctx.fillText(`${v.emoji} ${v.title}`, W / 2, 1130);
+  ctx.font = display(42, 700); ctx.fillStyle = "#3a3531";
+  wrapText(ctx, v.line, 760).forEach((line, i) => ctx.fillText(line, W / 2, 1230 + i * 58));
+  // footer CTA
+  ctx.font = display(50); ctx.fillStyle = "#1e1b18";
+  ctx.fillText("إنت كمان اعمل اختبارك وشوف مين صاحبك بجد 👇", W / 2, 1440);
+  ctx.font = display(40, 700); ctx.fillStyle = "#c2391c"; ctx.direction = "ltr";
+  ctx.fillText(pageUrl("/").replace(/^https?:\/\//, "").replace(/\/#\/$/, ""), W / 2, 1510);
+  return new Promise((resolve) => c.toBlob((blob) => resolve(blob), "image/png"));
+}
+
+/** Builds the story-card section on a result page: preview + share/download buttons. */
+async function mountStoryCard(root, info) {
+  const box = root.querySelector("#story");
+  if (!box) return;
+  let blob;
+  try { blob = await storyCard(info); } catch { box.remove(); return; }
+  if (!blob || !box.isConnected) return;
+  const url = URL.createObjectURL(blob);
+  const file = new File([blob], "sa7by-begad.png", { type: "image/png" });
+  const canShare = navigator.canShare && navigator.canShare({ files: [file] });
+  box.innerHTML = `
+    <h2 style="font-size:1.15rem">📸 كارت نتيجتك للستوري</h2>
+    <img src="${url}" alt="كارت نتيجة ${esc(info.name)}: ${info.score}/${info.total}">
+    <div class="grid2">
+      ${canShare ? `<button type="button" class="btn btn-blue btn-sm" id="story-share" style="width:100%">شير على الستوري</button>` : ""}
+      <a class="btn btn-white btn-sm" style="width:100%" href="${url}" download="sa7by-begad.png">تحميل الصورة</a>
+    </div>`;
+  box.querySelector("#story-share")?.addEventListener("click", async () => {
+    try { await navigator.share({ files: [file], text: "صاحبي بجد؟ 👀" }); } catch { /* closed */ }
+  });
+}
+
+function result(quiz, rec, meId) {
+  const v = verdict(rec.score, rec.total);
+  if (rec.score / rec.total >= 0.7) confetti(rec.score === rec.total ? 3200 : 1800);
+  // Simple mode has no server: the friend's result travels back to the owner as a link they tap.
+  const resultLink = quiz.board ? null : pageUrl("/r/" + encodeJson({ k: quiz.key, n: rec.name, c: quiz.creatorName, p: rec.picks, s: rec.score }));
+  const reportText = `نتيجة ${rec.name} في اختبار ${quiz.creatorName}: ${rec.score}/${rec.total} ${v.emoji} ${v.title}\n\nدوس على اللينك ده عشان نتيجتي تتسجل في لوحة الدرجات عندك 👇\n${resultLink}`;
+  show(`${header()}
+    <section class="card center enter tone-${v.tone}" aria-live="polite">
+      <p class="muted small">نتيجة ${esc(rec.name)} في اختبار ${esc(quiz.creatorName)}</p>
+      <p class="score-big pop">${rec.score}/${rec.total}</p>
+      <h1 style="font-size:1.4rem">${v.emoji} ${v.title}</h1>
+      <p class="muted" style="margin-top:4px">${v.line}</p>
+      ${resultLink ? `<a class="btn btn-wa" style="margin-top:16px" target="_blank" rel="noopener noreferrer" href="${esc(waLink(reportText))}">ابعت نتيجتك لـ ${esc(quiz.creatorName)}</a>` : `<p class="tip" style="margin-top:10px">${esc(quiz.creatorName)} هيشوف درجتك وإجاباتك في لوحة الدرجات 👀</p>`}
+    </section>
+    <section class="card story-card" id="story" aria-live="polite"><p class="tip">📸 بنجهّز كارت نتيجتك للستوري…</p></section>
+    <section class="card center" style="background:var(--sun-soft)">
+      <h2 style="font-size:1.3rem">دورك بقى! 😏</h2>
+      <p class="muted" style="margin:4px 0 14px">اعمل اختبار عن نفسك وشوف مين من صحابك يعرفك بجد.</p>
+      <a href="#/create" class="btn btn-blue">اعمل اختبارك</a>
+    </section>
+    ${adHtml()}
+    ${quiz.board ? scoreboardTitle(quiz.board.length) + boardHtml(quiz.board, { meId }) : ""}
+    <section class="card">
+      <h2 style="font-size:1.15rem;margin-bottom:6px">الإجابات الصح</h2>
+      <ol class="review">
+        ${quiz.questions.map((q, i) => {
+          const right = rec.picks[i] === rec.correct[i];
+          return `<li><p style="font-weight:700">${i + 1}. ${esc(q.text)}</p>
+            <p class="${right ? "right" : "wrong"} small">${right ? "✓" : "✗"} إجابتك: ${esc(q.options[rec.picks[i]] ?? "")}</p>
+            ${right ? "" : `<p class="right small">✓ الصح: ${esc(q.options[rec.correct[i]] ?? "")}</p>`}</li>`;
+        }).join("")}
+      </ol>
+    </section>`,
+    (root) => mountStoryCard(root, { name: rec.name, creator: quiz.creatorName, score: rec.score, total: rec.total, v }));
+}
+
+async function playOnline(id, token) {
+  if (!/^[a-f0-9]{10}$/.test(id || "")) return notFound();
+  skeleton();
+  let quiz, board;
+  try {
+    [quiz, board] = await Promise.all([rpc("fr_get_quiz", { p_id: id }), rpc("fr_board", { p_id: id })]);
+  } catch (err) {
+    if (token === routeToken) show(`${header()}${alertHtml(err.message)}<button class="btn btn-blue" onclick="location.reload()">جرّب تاني</button>`);
+    return;
+  }
+  if (token !== routeToken) return;
+  if (!quiz || !Array.isArray(quiz.questions) || quiz.questions.some((qid) => !QMAP.has(qid))) return notFound();
+  const gender = validGender(quiz.gender);
+  document.title = `${quiz.creator_name} بيتحداك 🔥 صاحب بجد ولا فيك؟`;
+  play({
+    key: id,
+    creatorName: quiz.creator_name,
+    questions: quiz.questions.map((qid) => viewQuestion(QMAP.get(qid), quiz.creator_name, gender)),
+    board,
+    ownerHref: owned.find(id) ? `#/me/${id}` : null,
+    resultsHref: `#/results/${id}`,
+    submit: async (name, picks) => {
+      const res = await rpc("fr_submit", { p_id: id, p_name: name, p_answers: picks });
+      return { score: res.score, total: res.total, correct: res.correct, board: res.board, attemptId: res.attempt_id };
+    },
+  });
+}
+
+function playLocal(payload) {
+  const quiz = decodePayload(payload || "");
+  if (!quiz) return notFound();
+  document.title = `${quiz.n} بيتحداك 🔥 صاحب بجد ولا فيك؟`;
+  play({
+    key: "p" + shortHash(payload),
+    creatorName: quiz.n,
+    questions: quiz.q.map((id) => viewQuestion(QMAP.get(id), quiz.n, quiz.g)),
+    board: null,
+    ownerHref: owned.find("p" + shortHash(payload)) ? "#/share/" + payload : null,
+    resultsHref: "#/results/p" + shortHash(payload),
+    submit: async (_name, picks) => ({ score: picks.reduce((sum, p, i) => sum + (p === quiz.a[i] ? 1 : 0), 0), total: quiz.a.length, correct: quiz.a }),
+  });
+}
+
+const SHARE_MESSAGE = "عملت اختبار عن نفسي 👀 لو إنت صاحبي بجد هتجيب ١٠/١٠… ولو جبت أقل، البلوك جاهز ومستنيك 🚫😂";
+
+function sharePage({ url, resultsHref, count, isNew, name, extra = "" }) {
+  return `${header()}
+    <section class="card center enter">
+      <h1 style="font-size:1.35rem">${isNew ? "نكشف الصحاب الفيك<br>ونعملهم بلوك" : `أهلاً يا ${esc(name)} 👋`}</h1>
+      <p style="margin:8px 0 14px;font-weight:700">شارك لينكك 🔗<br><span class="pink">و</span><br>اكشف صحابك الفيك 🎭</p>
+      ${shareButtons(url, SHARE_MESSAGE)}
+    </section>
+    ${sameWifiTip()}
+    <a class="btn btn-pink" id="results-btn" href="${esc(resultsHref)}">🏆 عرض الدرجات${count ? ` (${count})` : ""}</a>
+    ${extra}`;
+}
+
+function shareLocal(payload) {
+  const quiz = decodePayload(payload || "");
+  if (!quiz) return notFound();
+  const key = "p" + shortHash(payload);
+  const url = pageUrl("/p/" + payload);
+  show(sharePage({ url, resultsHref: "#/results/" + key, count: localResults.all(key).length, isNew: true, name: quiz.n,
+      extra: `<p class="tip">كل صاحب يخلّص هيبعتلك لينك نتيجته على واتساب، دوس عليه وهتلاقي درجته هنا. عايز النتايج تتجمع لوحدها؟ شوف <a href="#/setup">الإعداد</a>.</p>` }),
+    (root) => bindShare(root, url, SHARE_MESSAGE));
+}
+
+/** Simple mode scoreboard: everything the owner's phone has collected from tapped result links. */
+function resultsLocal(key, justSaved = null) {
+  const mine = owned.find(key);
+  if (!mine?.payload) return show(messageCard({ emoji: "🔒", title: "الصفحة دي لصاحب الاختبار بس", body: "افتح الموقع من نفس الموبايل اللي عملت منه الاختبار.", href: "#/create", cta: "اعمل اختبارك إنت" }));
+  const quiz = decodePayload(mine.payload);
+  if (!quiz) return notFound();
+  const questions = quiz.q.map((id) => QMAP.has(id) ? viewQuestion(QMAP.get(id), quiz.n, quiz.g) : { id, text: "سؤال قديم", options: [] });
+  const render = () => {
+    const list = localResults.all(key);
+    show(`${header()}
+      ${alertHtml(justSaved ? `✓ نتيجة ${justSaved} اتسجلت` : "", true)}
+      ${scoreboardTitle(list.length)}
+      ${boardHtml(list, { owner: true, questions, answers: quiz.a, empty: emptyBoard("أوه، صحابك لسه ماشاركوش!", "لما صاحبك يبعتلك لينك نتيجته على واتساب، دوس عليه وهتلاقيه هنا.") })}
+      <a class="btn btn-blue" href="#/share/${esc(mine.payload)}">📤 شارك اختبارك</a>
+      <p class="tip">💡 زرار "بلوك" علامة هزار على اللوحة بس، مبيعملش حاجة لرقم حد.</p>`,
+      (root) => root.querySelectorAll("[data-block]").forEach((b) => b.addEventListener("click", () => {
+        const attempt = localResults.all(key).find((a) => a.id === b.dataset.block);
+        if (attempt) localResults.setBlocked(key, attempt.id, !attempt.blocked);
+        justSaved = null;
+        withOpenPanelsKept(render);
+      })));
+  };
+  render();
+}
+
+/** #/r/<payload>: a friend's result link. On the owner's phone it is saved; anywhere else it is just a card. */
+function receiveResult(rpayload) {
+  const r = decodeResult(rpayload || "");
+  if (!r) return notFound();
+  const mine = owned.find(r.k);
+  const quiz = mine?.payload ? decodePayload(mine.payload) : null;
+  if (quiz) {
+    const score = r.p.reduce((sum, p, i) => sum + (p === quiz.a[i] ? 1 : 0), 0); // never trust the score inside the link
+    localResults.upsert(r.k, { name: r.n, picks: r.p, score, total: quiz.a.length, at: new Date().toISOString() });
+    history.replaceState(null, "", "#/results/" + r.k);
+    return resultsLocal(r.k, r.n);
+  }
+  const v = verdict(r.s, QUIZ_LENGTH);
+  show(`${header()}
+    <section class="card center enter tone-${v.tone}">
+      <p class="muted small">نتيجة ${esc(r.n)} في اختبار ${esc(r.c)}</p>
+      <p class="score-big pop">${r.s}/${QUIZ_LENGTH}</p>
+      <h1 style="font-size:1.4rem">${v.emoji} ${v.title}</h1>
+    </section>
+    <p class="tip">📩 اللينك ده لصاحب الاختبار. لو إنت ${esc(r.c)}، افتحه من نفس الموبايل اللي عملت منه الاختبار عشان النتيجة تتسجل.</p>
+    <section class="card center" style="background:var(--sun-soft)">
+      <h2 style="font-size:1.3rem">دورك بقى! 😏</h2>
+      <p class="muted" style="margin:4px 0 14px">اعمل اختبار عن نفسك وشوف مين من صحابك يعرفك بجد.</p>
+      <a href="#/create" class="btn btn-blue">اعمل اختبارك</a>
+    </section>`);
+}
+
+async function ownerOnline(id, keyFromUrl, isNew, view, token) {
+  if (!ONLINE || !/^[a-f0-9]{10}$/.test(id || "")) return notFound();
+  const key = keyFromUrl || owned.find(id)?.key;
+  const forbidden = () =>
+    show(messageCard({ emoji: "🔒", title: "الصفحة دي لصاحب الاختبار بس", body: "افتح الموقع من نفس الموبايل اللي عملت منه الاختبار، أو افتح لينك الدرجات السري اللي نسخته.", href: `#/q/${esc(id)}`, cta: "حل الاختبار" }));
+  if (!key) return forbidden();
+
+  skeleton();
+  let data;
+  try {
+    data = await rpc("fr_owner_board", { p_id: id, p_key: key });
+  } catch (err) {
+    if (token !== routeToken) return;
+    return err.message === "مش مسموح" ? forbidden() : show(`${header()}${alertHtml(err.message)}<button class="btn btn-blue" onclick="location.reload()">جرّب تاني</button>`);
+  }
+  if (token !== routeToken) return;
+
+  // Remember the key, then drop it from the address bar so it isn't copied or shared by accident.
+  if (owned.add({ id, key, name: data.creator_name }) && keyFromUrl) history.replaceState(null, "", `#/me/${id}`);
+
+  const url = pageUrl("/q/" + id);
+  const ownerUrl = pageUrl(`/me/${id}/${key}`);
+  const gender = validGender(data.gender);
+  const questions = (data.questions || []).map((qid) => QMAP.has(qid) ? viewQuestion(QMAP.get(qid), data.creator_name, gender) : { id: qid, text: "سؤال قديم", options: [] });
+  const s = { board: data.board, busyId: null, error: null };
+
+  // Results "just appear": refresh the board every few seconds while the owner is on these screens.
+  const refresh = async () => {
+    if (token !== routeToken) return clearInterval(poller);
+    if (s.busyId || document.hidden) return;
+    try {
+      const fresh = await rpc("fr_owner_board", { p_id: id, p_key: key });
+      if (token !== routeToken || s.busyId) return;
+      if (JSON.stringify(fresh.board) === JSON.stringify(s.board)) return;
+      s.board = fresh.board;
+      if (view === "share") {
+        const btn = document.getElementById("results-btn");
+        if (btn) btn.textContent = `🏆 عرض الدرجات (${s.board.length})`;
+      } else {
+        withOpenPanelsKept(renderResults);
+      }
+    } catch { /* transient; next tick retries */ }
+  };
+  const poller = setInterval(refresh, 4000);
+
+  const renderShare = () =>
+    show(sharePage({ url, resultsHref: `#/results/${id}`, count: s.board.length, isNew, name: data.creator_name,
+        extra: `${lanHint()}
+          <details class="card" style="padding:12px 18px">
+            <summary style="cursor:pointer;font-weight:700">🔑 لينك الدرجات السري (ليك إنت بس)</summary>
+            <p class="muted small" style="margin:8px 0">افتحه من أي موبايل تاني عشان تشوف الدرجات. متبعتوش لحد.</p>
+            <div class="link-box"><input id="owner-url" class="field field-ltr" readonly value="${esc(ownerUrl)}"><button type="button" class="btn btn-white btn-sm" id="owner-copy"><span aria-live="polite">نسخ</span></button></div>
+          </details>` }),
+      (root) => {
+        bindShare(root, url, SHARE_MESSAGE);
+        const ownerInput = root.querySelector("#owner-url");
+        ownerInput.addEventListener("focus", () => ownerInput.select());
+        root.querySelector("#owner-copy").addEventListener("click", (e) => copyText(ownerUrl, ownerInput, e.currentTarget.querySelector("span"), "نسخ"));
+      });
+
+  const renderResults = () =>
+    show(`${header({ back: `#/me/${id}` })}
+      ${scoreboardTitle(s.board.length)}
+      ${alertHtml(s.error)}
+      ${boardHtml(s.board, { owner: true, busyId: s.busyId, questions, answers: data.answers, empty: emptyBoard("أوه، صحابك لسه ماشاركوش! 🦗", "يا إما مشغولين… يا إما خايفين من النتيجة 😏 ابعت اللينك على الجروب وشوف مين هيتجرّأ.") })}
+      <a class="btn btn-blue" href="#/me/${esc(id)}">📤 شارك اختبارك</a>
+      <p class="tip">💡 كل ما صحاب أكتر يشاركوا، كل ما الحماس يزيد! زرار "بلوك" علامة هزار على اللوحة بس.</p>`,
+      (root) => root.querySelectorAll("[data-block]").forEach((b) => b.addEventListener("click", async () => {
+        const attempt = s.board.find((a) => a.id === b.dataset.block);
+        s.busyId = attempt.id;
+        s.error = null;
+        withOpenPanelsKept(renderResults);
+        try {
+          s.board = await rpc("fr_set_blocked", { p_id: id, p_key: key, p_attempt: attempt.id, p_blocked: !attempt.blocked });
+        } catch (err) {
+          s.error = err.message;
+        }
+        s.busyId = null;
+        if (token === routeToken) withOpenPanelsKept(renderResults);
+      })));
+
+  (view === "results" ? renderResults : renderShare)();
+}
+
+/** Real connection check: a harmless RPC tells "SQL not run" / "bad key" / "no network" apart from "connected". */
+async function probeSupabase() {
+  try {
+    await rpc("fr_get_quiz", { p_id: "0000000000" });
+    return window.FRIENDS_LOCAL_SERVER ? "✅ شغال على server.js: الدرجات بتتجمع لوحدها." : "✅ متوصل بـ Supabase وكود الـ SQL شغال.";
+  } catch (err) {
+    return "❌ " + err.message;
+  }
+}
+
+function setup() {
+  const token = routeToken;
+  const sql = document.getElementById("setup-sql").textContent.trim();
+  if (ONLINE) probeSupabase().then((text) => { if (token === routeToken) document.getElementById("probe").textContent = text; });
+  show(`${header()}
+    <section class="card prose">
+      <h1 class="big">الإعداد ⚙️</h1>
+      <p>الحالة: <b id="probe" aria-live="polite">${ONLINE ? "⏳ بنتأكد من الاتصال…" : "🟡 الوضع البسيط: النتايج بتوصلك كلينكات على واتساب"}</b></p>
+      <h2 style="font-size:1.1rem">١. تجربة على اللابتوب والموبايل (نفس الواي فاي)</h2>
+      <p>حط <code>server.js</code> جنب <code>friends.html</code> وشغّل في التيرمينال <code>node server.js</code>. افتح العنوان اللي هيطبعه على اللابتوب والموبايل، والدرجات هتتجمع فوراً.</p>
+      <h2 style="font-size:1.1rem">٢. النشر على Cloudflare (مجاني، من غير Supabase)</h2>
+      <ol>
+        <li>في Cloudflare: <b>Workers &amp; Pages ← Create ← Worker</b>، سمّيه مثلاً <code>sa7by-api</code>، ودوس <b>Edit code</b>، امسح الكود والصق محتوى ملف <code>worker.js</code> ثم <b>Deploy</b>.</li>
+        <li><b>Storage &amp; Databases ← KV</b> ← اعمل namespace اسمه <code>SA7BY</code>. بعدين من إعدادات الـ Worker: <b>Settings ← Bindings ← Add ← KV namespace</b>، الاسم (Variable name) <code>DB</code> واختار <code>SA7BY</code>.</li>
+        <li>انسخ عنوان الـ Worker (شكله <code>https://sa7by-api.xxx.workers.dev</code>) وحطه في <code>FRIENDS_CONFIG</code> في أول الملف: <code>SUPABASE_URL</code> = العنوان ده، و<code>SUPABASE_ANON_KEY</code> = <code>cf</code>. ارفع الملف على Pages تاني وخلاص.</li>
+      </ol>
+      <h2 style="font-size:1.1rem">٣. أو النشر مع Supabase</h2>
+      <ol>
+        <li>ارفع <code>friends.html</code> على استضافة مجانية (Netlify Drop، GitHub Pages، Cloudflare Pages).</li>
+        <li>اعمل مشروع مجاني على <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">supabase.com</a>، افتح <b>SQL Editor</b>، الصق الكود اللي تحت ودوس <b>Run</b>.</li>
+        <li>من <b>Project Settings ← API</b> انسخ <code>Project URL</code> و<code>anon public</code> key، وحطهم في <code>FRIENDS_CONFIG</code> في أول ٢٠ سطر من الملف.</li>
+      </ol>
+      <h2 style="font-size:1.1rem">٤. الإعلانات</h2>
+      <p>بعد موافقة Google AdSense حط <code>ADSENSE_CLIENT</code> و<code>AD_SLOT</code> في <code>FRIENDS_CONFIG</code>.</p>
+    </section>
+    <section class="card stack">
+      <h2 style="font-size:1.1rem">كود SQL</h2>
+      <pre class="sql" id="sql">${esc(sql)}</pre>
+      <button type="button" class="btn btn-white" id="copy-sql"><span aria-live="polite">انسخ الكود</span></button>
+    </section>
+    <section class="card stack">
+      <h2 style="font-size:1.1rem">🧹 ابدأ من جديد</h2>
+      <p class="muted small">بيمسح من المتصفح ده الاختبارات والنتايج المسجلة عليه. لو شغّال بـ <code>server.js</code> شغّله بـ <code>node server.js --reset</code>.</p>
+      <button type="button" class="btn btn-white" id="reset-all">امسح كل البيانات من المتصفح ده</button>
+    </section>`,
+    (root) => {
+      root.querySelector("#reset-all").addEventListener("click", () => {
+        if (!confirm("متأكد؟ هيتمسح كل اللي المتصفح ده فاكره عن الموقع.")) return;
+        mem.clearAll();
+        location.hash = "#/";
+      });
+      root.querySelector("#copy-sql").addEventListener("click", async (e) => {
+        const label = e.currentTarget.querySelector("span");
+        try {
+          await navigator.clipboard.writeText(sql);
+          label.textContent = "اتنسخ ✓";
+        } catch {
+          getSelection().selectAllChildren(root.querySelector("#sql"));
+          label.textContent = "الكود اتحدد، انسخه";
+        }
+      });
+    });
+}
+
+function privacy() {
+  show(`${header()}
+    <article class="card prose">
+      <h1 class="big">سياسة الخصوصية</h1>
+      <p>"${SITE_NAME}" لعبة اختبارات للتسلية. دي البيانات اللي بنجمعها وبنعمل بيها إيه.</p>
+      <h2 style="font-size:1.1rem">بنجمع إيه؟</h2>
+      <ul>
+        <li>الاسم اللي بتكتبه، وإجاباتك على الأسئلة، ونتيجتك. مفيش إيميل ولا رقم موبايل ولا كلمة سر.</li>
+        <li>المتصفح بيحفظ عندك (localStorage) الاختبارات اللي عملتها واللي حليتها عشان تلاقيها لما ترجع.</li>
+      </ul>
+      <h2 style="font-size:1.1rem">مين يشوف بياناتك؟</h2>
+      <p>أي حد معاه لينك الاختبار يشوف اسم صاحبه ولوحة الدرجات (الأسماء والدرجات). صاحب الاختبار بس هو اللي يشوف إجابتك على كل سؤال.</p>
+      <h2 style="font-size:1.1rem">زرار "بلوك"</h2>
+      <p>البلوك هزار: علامة على لوحة الدرجات بس. الموقع مبيعرفش رقمك ولا حساباتك، ومبيعملش بلوك حقيقي لأي حد.</p>
+      <h2 style="font-size:1.1rem">الإعلانات</h2>
+      <p>ممكن نستخدم Google AdSense. جوجل ممكن تستخدم كوكيز لعرض إعلانات على حسب زياراتك. تقدر تقفل الإعلانات المخصصة من <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">إعدادات الإعلانات في جوجل</a>.</p>
+    </article>`);
+}
+
+function notFound() {
+  show(messageCard({ emoji: "🙈", title: "أوه! الصفحة مش موجودة", body: "يمكن اللينك ناقص حرف. اتأكد منه، أو اعمل اختبارك.", href: "#/create", cta: "اعمل اختبارك" }));
+}
+
+// ---------- router (hash-based so one static file is the whole site) ----------
+function route() {
+  const token = ++routeToken;
+  const [page, a, b, c] = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+  document.title = `${SITE_NAME} | اكشف صحابك الفيك`;
+  window.scrollTo(0, 0);
+  switch (page) {
+    case undefined: return home();
+    case "create": return create();
+    case "q": return ONLINE ? playOnline(a, token) : notFound();
+    case "p": return playLocal(a);
+    case "share": return shareLocal(a);
+    case "me": return ownerOnline(a, b === "new" ? null : b, b === "new" || c === "new", "share", token);
+    case "results": return owned.find(a)?.payload ? resultsLocal(a) : ownerOnline(a, null, false, "results", token);
+    case "r": return receiveResult(a);
+    case "setup": return setup();
+    case "privacy": return privacy();
+    default: return notFound();
+  }
+}
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
